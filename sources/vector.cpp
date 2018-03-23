@@ -5,11 +5,19 @@
 
 vector_t::vector_t()
 {
-	int a;
+	elements_ = nullptr;
+	size_=0;
+	capacity_ =0;
 }
 
 vector_t::vector_t(vector_t const & other)
 {
+	size_= other.size();
+	capacity_ = other.capacity ();
+	elements_ = new int [capacity_];
+	for (unsigned int i=0; i< size_; i++) {
+		elements_[i] =other[i];
+	}
 }
 
 vector_t & vector_t::operator =(vector_t const & other)
