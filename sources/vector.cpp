@@ -67,7 +67,7 @@ std::size_t vector_t::capacity() const
 
 void vector_t::push_back(int value)
 {
-	if ((capacity_ == size_ ) && (capacity_ !=0))
+	if ((capacity_ == size_ ) && (size_ !=0))
 	{ int *elements_copy= new int [capacity_*2];
 	capacity_= capacity_*2;
 	for (unsigned int i=0; i< size_; i++)
@@ -81,10 +81,10 @@ void vector_t::push_back(int value)
 	delete [] elements_copy;
 	return;
 	};
-	if (capacity_ == 0) {
+	if (size_ == 0) {
 		size_=1;
-		elements_ = new int [2];
-		capacity_=2;
+		elements_ = new int [1];
+		capacity_=1;
 		elements_[0]=value;
 		return;
 	}
@@ -96,6 +96,7 @@ void vector_t::pop_back()
 {
 	if (size_==0) return;
 	if (size_==1) {capacity_=0; size_=0; delete [] elements_; elements_=nullptr; return;};
+	if (size==2)  {capacity_=1; size--;int copy=elements_[0]; delete[]elements_; elements_= new int [capacity]; elements_[0]=copy;return;}
 	size_--;
 	if (capacity_==(4*size_)) {
 		int *elements_copy= new int [capacity_/2];
