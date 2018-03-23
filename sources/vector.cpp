@@ -97,7 +97,7 @@ void vector_t::pop_back()
 	if (elements_==nullptr) return;
 	if (size_==1) {capacity_=0; size_=0; delete [] elements_; elements_=nullptr; return;};
 	size_--;
-	if (capacity_>=(4*size_)) {
+	if (capacity_==(4*size_)) {
 		int *elements_copy= new int [capacity_/2];
 	capacity_= capacity_/2;
 	for (unsigned int i=0; i< size_; i++)
