@@ -22,7 +22,7 @@ vector_t::vector_t(vector_t const & other)
 
 vector_t & vector_t::operator =(vector_t const & other)
 {
-	if (this==other) return *this;
+	if (this->elements_==other.elements_) return *this;
 	else {
 		delete [] elements_;
 		size_= other.size_;
@@ -103,7 +103,7 @@ void vector_t::pop_back()
 	for (unsigned int i=0; i< size_; i++)
 		elements_copy[i] =elements_[i];
 		delete [] elements_;
-		elements_= new int [capacity];
+		elements_= new int [capacity_];
 		for (unsigned int i=0; i< size_; i++)
 		elements_[i] =elements_copy[i];
 	delete [] elements_copy;
@@ -123,10 +123,11 @@ int vector_t::operator [](std::size_t index) const
 bool operator !=(vector_t const & lhs, vector_t const & rhs)
 {
 	int flag=0;
-	if (lhs.size_ != rhs.size_) flag=1;
+	if (lhs.size() != rhs.size()) flag=1;
 	else {
-		for (unsigned int i=0; i< size_; i++) {
-		if (lhs.elements_[i] !=rhs.elements_[i]) flag =1;
+		for (unsigned int i=0; i< lhs.size(); i++) {
+		if (lhs[i] !=rhs[i]) flag =1;
+		}
 	}
 	return flag==1 ? true:false;
 }
