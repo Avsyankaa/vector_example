@@ -75,16 +75,19 @@ void vector_t::push_back(int value)
 	size_++;
 	elements_copy[size_-1] = value;
 	delete [] elements_;
-	elements_ = elements_copy;
+	elements_ = new int [capacity_];
+	for (unsigned int i=0; i< size_; i++)
+		elements_[i] =elements_copy[i];
 	delete [] elements_copy;
-	}; return;
+	return;
+	};
 	if (capacity_ == 0) {
 		size_=1;
 		elements_ = new int [1];
 		capacity_=1;
 		elements_[0]=value;
+		return;
 	}
-	return;
 	size_++;
 	elements_ [size_-1] = value;
 }
@@ -100,7 +103,9 @@ void vector_t::pop_back()
 	for (unsigned int i=0; i< size_; i++)
 		elements_copy[i] =elements_[i];
 		delete [] elements_;
-	elements_ = elements_copy;
+		elements_= new int [capacity];
+		for (unsigned int i=0; i< size_; i++)
+		elements_[i] =elements_copy[i];
 	delete [] elements_copy;
 	return; }
 }
