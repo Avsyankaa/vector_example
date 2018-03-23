@@ -95,6 +95,7 @@ void vector_t::push_back(int value)
 void vector_t::pop_back()
 {
 	if (size_==0) return;
+	if (size_==1) {size_=0; capacity_=1; return;};
 	size_--;
 	if (capacity_==(4*size_)) {
 		int *elements_copy= new int [capacity_/2];
