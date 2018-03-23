@@ -83,8 +83,8 @@ void vector_t::push_back(int value)
 	};
 	if (capacity_ == 0) {
 		size_=1;
-		elements_ = new int [1];
-		capacity_=1;
+		elements_ = new int [2];
+		capacity_=2;
 		elements_[0]=value;
 		return;
 	}
